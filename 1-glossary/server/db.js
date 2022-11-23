@@ -9,20 +9,24 @@ const wordSchema = new mongoose.Schema({
   description : String
 })
 
+const Word = mongoose.model('Word', wordSchema);
 
 
 exports.save = (wordObj, callback) => {
-  let entry = {};
-  entry.word = wordObj.word;
-  entry.description = wordObj.description;
-  const word = mongoose.model(wordSchema, entry);
-    word.save((err) => {
+
+  const newWord = new Word(wordObj);
+
+    newWord.save((err) => {
       if(err) {
         callback(err);
       } else {
         callback(null);
       }
     })
+}
+
+exports.getAll = (callback) => {
+  Word.find().exec(callback);
 }
 
 // 3. Export the models

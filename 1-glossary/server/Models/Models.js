@@ -1,7 +1,7 @@
 const db = require('../db.js');
 
 exports.readAll = (callback) => {
-  callback(null , 'word data');
+  db.getAll(callback);
 }
 
 exports.create = (wordObj, callback) => {
