@@ -1,14 +1,15 @@
 import React from 'react';
 
-let WordListItem = ({editWord, deleteWord}) => {
+let WordListItem = ({editWord, deleteWord, wordObj}) => {
 
   return(
     <div>
-      WordListItem
+      <h3>{wordObj.word}</h3>
+      <p>{wordObj.description}</p>
       <br></br>
       <button onClick={editWord}>I send a put request</button>
       <br></br>
-      <button onClick={deleteWord}>I send a delete request</button>
+      <button onClick={(e) => {deleteWord(wordObj._id)}}>Delete Entry</button>
     </div>
   );
 }

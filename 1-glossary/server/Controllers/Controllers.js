@@ -36,5 +36,13 @@ exports.put = (req, res) => {
 
 exports.delete = (req, res) => {
   console.log(`PROCESSING REQUEST TYPE ${req.method} AT ${req.url}`);
-  res.sendStatus(201);
+  let id = req.query.id;
+  console.log(id);
+  models.delete(id, (err) => {
+    if(err) {
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(201);
+    }
+  })
 };

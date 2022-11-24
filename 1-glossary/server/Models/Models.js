@@ -7,3 +7,7 @@ exports.readAll = (callback) => {
 exports.create = (wordObj, callback) => {
   db.save(wordObj, callback);
 }
+
+exports.delete = (wordString, callback) => {
+  db.deleteWord(wordString, callback);
+}

@@ -2,14 +2,22 @@ import React from 'react';
 import WordListItem from './WordListItem.jsx';
 import AddWord from './AddWord.jsx';
 
-let WordList = ({addWord, editWord, deleteWord}) => {
+let WordList = ({addWord, editWord, deleteWord, wordState}) => {
 
   return(
     <div>
-      WordList
+      <h4>Explore Words</h4>
       <AddWord addWord={(word) => addWord(word)}/>
       <br></br>
-      <WordListItem editWord={(word) => editWord(word)} deleteWord={(word) => deleteWord(word)}/>
+      {
+        wordState.map((wordObj) => {
+        return (
+            <WordListItem editWord={(word) => editWord(word)} deleteWord={(word) => deleteWord(word)} wordObj={wordObj}/>
+          )
+        }
+        )
+      }
+
     </div>);
 }
 
