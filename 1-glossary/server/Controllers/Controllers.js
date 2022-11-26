@@ -31,7 +31,17 @@ exports.post = (req, res) => {
 
 exports.put = (req, res) => {
   console.log(`PROCESSING REQUEST TYPE ${req.method} AT ${req.url}`);
-  res.sendStatus(201);
+  let wordObj = {};
+  wordObj._id = req.body._id;
+  wordObj.word = req.body.word;
+  wordObj.description = req.body.description;
+  models.update(wordObj, (err) => {
+    if(err) {
+      res.sendStatus(404);
+    } else{
+      res.sendStatus(201);
+    }
+  });
 };
 
 exports.delete = (req, res) => {

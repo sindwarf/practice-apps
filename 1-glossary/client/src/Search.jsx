@@ -4,8 +4,11 @@ let Search = ({searchWords}) => {
 
   return(
   <div>
-    SearchBar
-    <button onClick = {searchWords}> I send a get request</button>
+    <form onSubmit={searchWords}>
+      Search
+      <input type = "text"/>
+      <input type = 'submit'/>
+    </form>
   </div>
   );
 }

@@ -1,7 +1,5 @@
 TODO:
   General:
-    Setup a UseEffect linked to an a state that I can call whenever I need to rerender
-    Finish out the edit function on the backend
   Search:
     Add a form field to search
     Build out a search function
@@ -9,6 +7,4 @@ TODO:
   addWord:
     Make it prettier
   WordListItem:
-    Render description and word to screen
-    Add button to edit existing word
-    Add button to delete existing word
+    Make it prettier

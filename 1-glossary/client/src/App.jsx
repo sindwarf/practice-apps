@@ -22,23 +22,8 @@ const App = () => {
 
 
   let searchWords = (e) => {
-    getAllWords((err, data) => {
-      if(err) {
-        console.log('ERROR GETTING IN SEARCH : ', err);
-      } else {
-        setWordState(data);
-      }
-    });
-  }
-
-  let getAllWords = (callback) => {
-    axios.get('/words')
-      .then((response) => {
-        callback(null, response.data);
-      })
-      .catch((err) => {
-        callback(err, null);
-      })
+    e.preventDefault();
+    console.log(e.target[0].value)
   }
 
   let addWord = (e) => {
@@ -60,11 +45,27 @@ const App = () => {
 
   }
 
-  let editWord = (e) => {//TODO: get id of word obj and send to edit with new description
-    console.log('clicked');
+  let editWord = (e, objId) => {//TODO: get id of word obj and send to edit with new description
+    e.preventDefault();
+    console.log(e.target[0].value);
+    console.log(e.target[1].value);
+    console.log(objId);
+    let putObj = {
+      _id : objId,
+      word : e.target[0].value,
+      description : e.target[1].value
+    }
+    axios.put('/words', putObj)
+    .then(response => {
+      console.log('success at put', response);
+      setUpdateState(!updateState);
+    })
+    .catch(err => {
+      console.log('error at put', err);
+    })
   }
 
-  let deleteWord = (e) => {//TODO: get id of word obj to send to delete
+  let deleteWord = (e) => {
     axios.delete('/words', {params: {id : e}})//e is actually id
     .then(()=> {
       console.log('success at delete');
@@ -81,7 +82,7 @@ const App = () => {
       <br></br>
       <Search searchWords={(e) => searchWords(e)}/>
       <br></br>
-      <WordList addWord={(word) => addWord(word)} editWord={(word) => editWord(word)}
+      <WordList addWord={(word) => addWord(word)} editWord={(word, objId) => editWord(word, objId)}
       deleteWord={(word) => deleteWord(word)} wordState={wordState}/>
     </div>
   );

@@ -38,8 +38,17 @@ exports.getAll = (callback) => {
   Word.find().exec(callback);
 }
 
-exports.updateWord = (word, callback) => {
-
+exports.updateWord = (wordObj, callback) => {
+  console.log('in update');
+  Word.updateOne({_id : wordObj._id}, {word : wordObj.word, description: wordObj.description}, (err, res) => {
+    if(err){
+      console.log('update error');
+      callback(err);
+    } else {
+      console.log('update success');
+      callback(null);
+    }
+  })
 }
 
 exports.deleteWord = (id, callback) => {

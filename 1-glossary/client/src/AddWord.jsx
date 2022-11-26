@@ -13,7 +13,7 @@ let AddWord = ({addWord}) => {
         <label>
          Add a description :
         <input type = "text"/>
-        <input type = "submit" />
+        <input type = "submit" value="Add Word" />
         </label>
 
     </form>

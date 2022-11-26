@@ -12,7 +12,7 @@ let WordList = ({addWord, editWord, deleteWord, wordState}) => {
       {
         wordState.map((wordObj) => {
         return (
-            <WordListItem editWord={(word) => editWord(word)} deleteWord={(word) => deleteWord(word)} wordObj={wordObj}/>
+            <WordListItem editWord={(word, objId) => editWord(word, objId)} deleteWord={(word) => deleteWord(word)} wordObj={wordObj}/>
           )
         }
         )
