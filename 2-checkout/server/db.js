@@ -16,9 +16,32 @@ db.connectAsync()
   .then(() =>
     // Expand this table definition as needed:
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS responses (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY)"
-    )
-  )
+      "CREATE TABLE IF NOT EXISTS responses (session_ID varchar(11),      name varchar(20),      email varchar(20),      password varchar(20),      address1 varchar(60),      address2 varchar(60),      city varchar(20),      state varchar(20),      zipCode integer(11),      phone integer(11),      creditCard integer(11),      expiryDate integer(11),      cvv integer(11),      billingZip integer(11))"))
   .catch((err) => console.log(err));
 
-module.exports = db;
+// exports.getAll = (callback) => {
+//   let q = 'SELECT * FROM user';
+//   connection.query(q, (err, results) => {
+//     if(err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, results);
+//     }
+//   })
+// }
+
+exports.createForm = (params, callback) => {
+  console.log('params', params)
+  let q = 'INSERT INTO responses VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  connection.query(q, params, callback)
+}
+
+// exports.addContact = (info, callback) => {
+
+// }
+
+// exports.addPayment = (info, callback) => {
+
+// }
+
+
